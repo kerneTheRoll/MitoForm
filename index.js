@@ -3,6 +3,7 @@ const app = express();
 const axios = require('axios');
 app.set("view engine","ejs");
 
+var port = process.env.PORT || 8000;
 const callAPIState = () =>{
  //https://api.printful.com/countries
  axios.get('https://api.printful.com/countries').then(data=>{
@@ -23,6 +24,6 @@ app.post('/contact',(req,res)=>{
      res.render("pages/index",{message:"Contattaci"})
  })
 
-app.listen(3000,function(){
+app.listen(port,function(){
     console.log("App in ascolto...");
 });
