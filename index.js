@@ -3,7 +3,7 @@ const app = express();
 const axios = require('axios');
 app.set("view engine","ejs");
 
-var port = process.env.PORT || 8000;
+var port = process.env.PORT || 3000;
 const callAPIState = () =>{
  //https://api.printful.com/countries
  axios.get('https://api.printful.com/countries').then(data=>{
