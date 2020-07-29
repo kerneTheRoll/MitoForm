@@ -14,7 +14,7 @@ const callAPIState = () =>{
  })
 }
 
-app.get('/contact',(req,res)=>{
+app.get('*',(req,res)=>{
    //let data=  callAPIState();
     res.render("pages/index",{message:"Contattaci"})
 
