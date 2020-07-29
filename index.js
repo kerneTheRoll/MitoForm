@@ -14,12 +14,12 @@ const callAPIState = () =>{
  })
 }
 
-app.get('*',(req,res)=>{
+app.get('*',function(req,res){
    //let data=  callAPIState();
     res.render("pages/index",{message:"Contattaci"})
 
 })
-app.post('/contact',(req,res)=>{
+app.post('/contact',function(req,res){
      console.log("req.body");
      res.render("pages/index",{message:"Contattaci"})
  })
