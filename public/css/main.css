@@ -1,0 +1,22 @@
+.iti__flag {background-image: url("../img/flags.png");}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iti__flag {background-image: url("path/to/flags@2x.png");}
+}
+.form-control{
+  border-radius: 0;
+}
+.btn-dark{
+  border-radius: 0;
+  width: 150px;
+}
+button.multiselect {
+    background-color: initial;
+    border: 1px solid #ced4da;
+    margin-left: 15px;
+    margin-top:10px;
+    margin-bottom: 10px;
+  }
+ 
+
+ 
