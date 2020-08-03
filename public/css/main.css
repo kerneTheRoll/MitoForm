@@ -19,4 +19,11 @@ button.multiselect {
   }
  
 
- 
+ .black{
+   background: black;
+   height: 100vh;
+ }
+
+ .white-color{
+   color: #ffff;
+ }

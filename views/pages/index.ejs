@@ -1,50 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css" integrity="sha512-EvvoSMXERW4Pe9LjDN9XDzHd66p8Z49gcrB7LCUplh0GcEHiV816gXGwIhir6PJiwl0ew8GFM2QaIg2TW02B9A==" crossorigin="anonymous" />
-    <link rel="stylesheet" type="text/css" href="css/main.css" />
-    
-    <title>Form Contatti Mitofood</title>
-
-</head>
-<body>
+     <%- include('../partials/header.ejs')%>
     <div class="  contenitore py-5 px-5">
-    <form class="ui form" method="POST" action="/contact">
+    <form class="ui form" method="POST" action="/contact" id="sendEmailMito">
       
-      <form>
+     
         <div class="row">
           <div class="col">
-            <input type="text" class="form-control" placeholder="First name">
+            <input type="text" class="form-control" placeholder="First name" id="name" name="name">
           </div>
           <div class="col">
-            <input type="text" class="form-control" placeholder="Last name">
+            <input type="text" class="form-control" placeholder="Last name" id="lastname" name="lastname">
           </div>
           <div class="col">
-            <input type="text" class="form-control" placeholder="Company">
+            <input type="text" class="form-control" placeholder="Company" id="company">
           </div>
         </div>
         <div class="row mt-2">
           <div class="col">
-            <input type="text" class="form-control" placeholder="city">
+            <input type="text" class="form-control" placeholder="city" id="city">
           </div>
           <div class="col">
-            <input type="text" class="form-control" placeholder="province">
+            <input type="text" class="form-control" placeholder="province" name="provincia" id="provincia">
           </div>
           
         </div>
         <div class="row mt-2">
           <div class="col">
-            <input type="text" class="form-control" placeholder="postocode">
+            <input type="text" class="form-control" placeholder="postcode" id="postcode">
           </div>
           <div class="col">
            
-            <select class="form-control" id="exampleFormControlSelect1">
-              <option value="0">select State</option>
+            <select class="form-control" id="exampleFormControlSelect1" id="state">
+              <option value="0">select your state</option>
               <% for(var sta of stati) {%>
-                <option value="0"><%=sta.name %></option>
+                <option value=<%=sta.name %>><%=sta.name %></option>
 
                 <%}%>
               
@@ -54,23 +42,22 @@
         </div>
         <div class="row mt-2">
           <div class="col">
-            <input type="email" class="form-control" placeholder="email">
+            <input type="email" class="form-control" placeholder="email" name="email" >
           </div>
           
           
         </div>
         <div class="row mt-2">
-          <div class="col-3">
-          <input type="number" class="form-control" placeholder="prefix number phone"/></div>
+   
           <div class="col">
-            <input type="phone"  id="mobile-number"  name="phoneField"  class="form-control" placeholder="insert you number phone"/>
+            <input type="phone"  id="phone"  name="phoneField"  class="form-control" placeholder="insert you number phone"/>
           </div>
           
           
         </div>
         <div class="row mt-2">
          
-        <select id="example-getting-started"  multiple="multiple">
+        <select id="choose"  multiple="multiple">
           <option selected>choose</option>
           <option value="About Company">About Company</option>
           <option value="Coffe">Product/Coffe</option>
@@ -82,7 +69,7 @@
         </div>
         <div class="row mt-2">
           <div class="col ">
-           <textarea class="form-control" placeholder="write here your request"></textarea>
+           <textarea class="form-control" placeholder="write here your request" id="message"></textarea>
           </div>
         </div>
         <div class="form-check mt-2">
@@ -92,26 +79,70 @@
      
         <div class=" mt-4">
 
-          <button class="btn btn-dark" tabindex="0">Send</button>
+          <button type="button" id="inviaEmail" class="btn btn-dark" tabindex="0">Send</button>
         </div>
       </form>
       
-      </form>
+      
     </div>
     
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.js" integrity="sha512-wcMFq37GBTOH2NCdFpdhOHqMJlBKFzpNQFmK3WW6G2JK0D99zKF2IsyO9YhWGI8JE6LlWe9wyjj+Cz5B1AoO8w==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+<script src="/javascript/intlTelInput.js"></script>
 <script>
    $(document).ready(function() {
-     
-    $('#example-getting-started').multiselect({
+    $("#phone").intlTelInput({
+        //autoFormat: false,
+        //autoHideDialCode: false,
+        //defaultCountry: "jp",
+        //nationalMode: true,
+        //numberType: "MOBILE",
+        //onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+        //preferredCountries: ['cn', 'jp'],
+        //responsiveDropdown: true,
+        utilsScript: "/javascript/utils.js"
+      });
+    $('#choose').multiselect({
        
     });
+ 
+  $("#inviaEmail").click(function(){
+    let acconsentoPrivacy = !$("#exampleCheck1").is(':checked');
+    if(acconsentoPrivacy) {
+      $.alert({
+        title: 'Sorry!',
+        content: 'you must first consent to the processing of your personal data, click on the nick above the button',
+      });
+      return;
+    }
+     var data = {
+       name: $("#name").val(),
+       lastname :$("#lastname").val(),
+       company :$("#company").val(),
+       city :$("#city").val(),
+       scelta:$("#choose").val(),
+       provincia:$("#provincia").val(),
+       postcode : $("#postcode").val(),
+       state:$('#state').val(),
+       email:$('#email').val(),
+       message:$("#message").val()
+
+     }
+      $.ajax({
+        method:'POST',
+        url:'/contact',
+        contentType:'application/json',
+        data:JSON.stringify(data)
+      })
+
+    })
    });
 </script>
 </html>
