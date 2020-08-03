@@ -42,7 +42,7 @@ const trasport = nodemailer.createTransport({
   port:465,
     auth:{
     user:'postmaster@ladolcevia.it',
-    pass:'mito2020'
+    pass:'*****'
     }
 })
 

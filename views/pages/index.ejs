@@ -98,6 +98,8 @@
 <script src="/javascript/intlTelInput.js"></script>
 <script>
    $(document).ready(function() {
+
+
     $("#phone").intlTelInput({
         //autoFormat: false,
         //autoHideDialCode: false,
@@ -109,12 +111,13 @@
         //responsiveDropdown: true,
         utilsScript: "/javascript/utils.js"
       });
-    $('#choose').multiselect({
-       
-    });
- 
-  $("#inviaEmail").click(function(){
-    let acconsentoPrivacy = !$("#exampleCheck1").is(':checked');
+    $('#choose').multiselect();
+    $('#form').validate({
+
+//
+
+submitHandler: function(form) {
+  let acconsentoPrivacy = !$("#exampleCheck1").is(':checked');
     if(acconsentoPrivacy) {
       $.alert({
         title: 'Sorry!',
@@ -141,8 +144,40 @@
         contentType:'application/json',
         data:JSON.stringify(data)
       })
+}
+});
+  // $("#inviaEmail").click(function(){
+  //   let acconsentoPrivacy = !$("#exampleCheck1").is(':checked');
+  //   if(acconsentoPrivacy) {
+  //     $.alert({
+  //       title: 'Sorry!',
+  //       content: 'you must first consent to the processing of your personal data, click on the nick above the button',
+  //     });
+  //     return;
+  //   }
+  //    var data = {
+  //      name: $("#name").val(),
+  //      lastname :$("#lastname").val(),
+  //      company :$("#company").val(),
+  //      city :$("#city").val(),
+  //      scelta:$("#choose").val(),
+  //      provincia:$("#provincia").val(),
+  //      postcode : $("#postcode").val(),
+  //      state:$('#state').val(),
+  //      email:$('#email').val(),
+  //      message:$("#message").val()
 
-    })
-   });
+  //    }
+  //     $.ajax({
+  //       method:'POST',
+  //       url:'/contact',
+  //       contentType:'application/json',
+  //       data:JSON.stringify(data)
+  //     })
+
+  //   })
+ 
+
+});
 </script>
 </html>
