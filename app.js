@@ -42,7 +42,7 @@ const trasport = nodemailer.createTransport({
   port:465,
     auth:{
     user:'postmaster@ladolcevia.it',
-    pass:'*****'
+    pass:'***'
     }
 })
 
@@ -67,20 +67,19 @@ app.post('/contact',apiLimiter,async function(req,res){
 
 
 
-  console.log(req.body)
-  // const output = await ejs.renderFile("./views/mail.ejs", {
-  //   obj = req.body
-  // });
-  // let mailObject = {
-  //   from:'postmaster@ladolcevia.it',
-  //   to:listDestinatari,
-  //   subject:'prova email',
-  //   html:output
-  // }
-  //  //  res.json({message:'ok'})
-  //    trasport.sendMail(mailObject,(error,info)=>{
-  //     if(error) return console.log(error)
-  //   })
+  const output = await ejs.renderFile("./views/mail.ejs", {
+    obj : req.body
+  });
+  let mailObject = {
+    from:'postmaster@ladolcevia.it',
+    to:listDestinatari,
+    subject:'prova email',
+    html:output
+  }
+   //  res.json({message:'ok'})
+     trasport.sendMail(mailObject,(error,info)=>{
+      if(error) return console.log(error)
+    })
  })
 
  app.get('/mail',function(req,res){

@@ -11,12 +11,12 @@
             <input type="text" class="form-control" placeholder="Last name" id="lastname" name="lastname">
           </div>
           <div class="col">
-            <input type="text" class="form-control" placeholder="Company" id="company">
+            <input type="text" class="form-control" placeholder="Company" id="company" name="company">
           </div>
         </div>
         <div class="row mt-2">
           <div class="col">
-            <input type="text" class="form-control" placeholder="city" id="city">
+            <input type="text" class="form-control" placeholder="city" id="city" name="city">
           </div>
           <div class="col">
             <input type="text" class="form-control" placeholder="province" name="provincia" id="provincia">
@@ -25,12 +25,12 @@
         </div>
         <div class="row mt-2">
           <div class="col">
-            <input type="text" class="form-control" placeholder="postcode" id="postcode">
+            <input type="text" class="form-control" placeholder="postcode" id="postcode" name="postcode">
           </div>
           <div class="col">
            
-            <select class="form-control" id="exampleFormControlSelect1" id="state">
-              <option value="0">select your state</option>
+            <select class="form-control required" id="exampleFormControlSelect1" id="state" name="state">
+              <option value="">select your state</option>
               <% for(var sta of stati) {%>
                 <option value=<%=sta.name %>><%=sta.name %></option>
 
@@ -57,8 +57,8 @@
         </div>
         <div class="row mt-2">
          
-        <select id="choose"  multiple="multiple">
-          <option selected>choose</option>
+        <select id="choose"  multiple="multiple" name="scelta" class="required">
+          
           <option value="About Company">About Company</option>
           <option value="Coffe">Product/Coffe</option>
           <option value="Gelato">Products/Gelato</option>
@@ -79,7 +79,7 @@
      
         <div class=" mt-4">
 
-          <button type="button" id="inviaEmail" class="btn btn-dark" tabindex="0">Send</button>
+          <button type="submit" id="inviaEmail" class="btn btn-dark" tabindex="0">Send</button>
         </div>
       </form>
       
@@ -99,7 +99,7 @@
 <script>
    $(document).ready(function() {
 
-
+ 
     $("#phone").intlTelInput({
         //autoFormat: false,
         //autoHideDialCode: false,
@@ -111,14 +111,47 @@
         //responsiveDropdown: true,
         utilsScript: "/javascript/utils.js"
       });
-    $('#choose').multiselect();
-    $('#form').validate({
+    $('#choose').multiselect({
+      class:'required'
+    });
 
-//
+    $('#sendEmailMito').validate({
 
-submitHandler: function(form) {
-  let acconsentoPrivacy = !$("#exampleCheck1").is(':checked');
-    if(acconsentoPrivacy) {
+      rules: {
+      
+      name: "required",
+      lastname: "required",
+      company:"required",
+      city:"required",
+      
+      phoneField:"required",
+      provincia:"required",
+      postcode:"required",
+   
+      email: {
+        required: true,
+        
+        email: true
+      }
+     
+    },
+   
+    messages: {
+      name: "Please enter your firstname",
+      lastname: "Please enter your lastname",
+      company :"Please enter your Name",
+      city:"Please enter your city name",
+      scelta:"please choose one ",
+      provincia:"Please enter your province name",
+      state:"Please enter your your state",
+      postcode:"please enter your postcode",
+      phoneField:"please enter your number phone",
+      email: "Please enter a valid email address"
+    },
+
+    submitHandler: function(form) {
+      let acconsentoPrivacy = !$("#exampleCheck1").is(':checked');
+     if(acconsentoPrivacy) {
       $.alert({
         title: 'Sorry!',
         content: 'you must first consent to the processing of your personal data, click on the nick above the button',

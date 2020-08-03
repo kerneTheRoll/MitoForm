@@ -27,3 +27,7 @@ button.multiselect {
  .white-color{
    color: #ffff;
  }
+
+ form .error {
+  color: #ff0000;
+}
