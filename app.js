@@ -7,15 +7,14 @@ const nodemailer = require('nodemailer');
 const helmet = require('helmet');
 const rateLimit = require("express-rate-limit");
 const ejs = require("ejs");
-
+require('dotenv').config()
 app.set("view engine","ejs");
-
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 6000;
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json())
 app.use(express.static(__dirname + '/public'));
 
-listDestinatari = ['abdimohamed862992@gmail.com'];
+
 
 const apiLimiter = rateLimit({
   windowMs: 5 * 60 * 1000, 
@@ -33,18 +32,6 @@ const callAPIState = async ( ) =>{
  })
 }
 
-const trasport = nodemailer.createTransport({
-  
-  host: "smtps.aruba.it",
-  logger: true,
-  debug:true,
-  secure: true,
-  port:465,
-    auth:{
-    user:'postmaster@ladolcevia.it',
-    pass:'***'
-    }
-})
 
 
 
@@ -62,24 +49,38 @@ app.get('/',  function(req,res){
    
 
 })
-app.post('/contact',apiLimiter,async function(req,res){
-
-
-
-
+app.post('/contact',apiLimiter,async (req, res) => {
+  listDestinatari = ['abdimohamed862992@gmail.com','info@mitofood.it'];
+  const trasport = nodemailer.createTransport({
+  
+    host: "smtps.aruba.it",
+    logger: true,
+    debug:true,
+    secure: true,
+    port:465,
+      auth:{
+      user:process.env.USER,
+      pass:process.env.PASS
+      }
+  })
+  
   const output = await ejs.renderFile("./views/mail.ejs", {
     obj : req.body
   });
   let mailObject = {
     from:'postmaster@ladolcevia.it',
     to:listDestinatari,
+    bcc: 'abdimohamed862992@gmail.com',
     subject:'prova email',
     html:output
   }
    //  res.json({message:'ok'})
      trasport.sendMail(mailObject,(error,info)=>{
       if(error) return console.log(error)
+      res.json({send:"ok"})
     })
+
+
  })
 
  app.get('/mail',function(req,res){
@@ -87,5 +88,8 @@ app.post('/contact',apiLimiter,async function(req,res){
  })
 
 app.listen(port,function(){
-    console.log("App in ascolto...");
+    console.log(`app in ascolto alla porta ${process.env.PORT}`);
 });
+
+
+

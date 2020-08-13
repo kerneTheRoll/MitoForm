@@ -1,16 +1,17 @@
      <%- include('../partials/header.ejs')%>
+    
     <div class="  contenitore py-5 px-5">
     <form class="ui form" method="POST" action="/contact" id="sendEmailMito">
       
      
         <div class="row">
-          <div class="col">
+          <div class="col-md-4">
             <input type="text" class="form-control" placeholder="First name" id="name" name="name">
           </div>
-          <div class="col">
+          <div class="col-md-4 spostacolInMobile ">
             <input type="text" class="form-control" placeholder="Last name" id="lastname" name="lastname">
           </div>
-          <div class="col">
+          <div class="col-md-4 spostacolInMobile ">
             <input type="text" class="form-control" placeholder="Company" id="company" name="company">
           </div>
         </div>
@@ -29,7 +30,7 @@
           </div>
           <div class="col">
            
-            <select class="form-control required" id="exampleFormControlSelect1" id="state" name="state">
+            <select class="form-control required"  id="state" name="state">
               <option value="">select your state</option>
               <% for(var sta of stati) {%>
                 <option value=<%=sta.name %>><%=sta.name %></option>
@@ -42,7 +43,7 @@
         </div>
         <div class="row mt-2">
           <div class="col">
-            <input type="email" class="form-control" placeholder="email" name="email" >
+            <input type="email" class="form-control" placeholder="email" id="email" name="email" >
           </div>
           
           
@@ -58,7 +59,7 @@
         <div class="row mt-2">
          
         <select id="choose"  multiple="multiple" name="scelta" class="required">
-          
+        
           <option value="About Company">About Company</option>
           <option value="Coffe">Product/Coffe</option>
           <option value="Gelato">Products/Gelato</option>
@@ -74,7 +75,7 @@
         </div>
         <div class="form-check mt-2">
           <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">I agree <a href="#">terms & conditions.</a> </label>
+          <label class="form-check-label" for="exampleCheck1">I agree <a href="https://www.cookiepolicygenerator.com/live.php?token=KeEQOLL72N4SNSGeeZZxxfguddUSuqmM" target="_blank">terms & conditions.</a> </label>
         </div>
      
         <div class=" mt-4">
@@ -112,7 +113,7 @@
         utilsScript: "/javascript/utils.js"
       });
     $('#choose').multiselect({
-      class:'required'
+      nonSelectedText: 'choose product',
     });
 
     $('#sendEmailMito').validate({
@@ -168,14 +169,17 @@
        postcode : $("#postcode").val(),
        state:$('#state').val(),
        email:$('#email').val(),
-       message:$("#message").val()
+       message:$("#message").val(),
+       phone:$("#phone").val()
 
      }
       $.ajax({
         method:'POST',
         url:'/contact',
         contentType:'application/json',
-        data:JSON.stringify(data)
+        data:JSON.stringify(data),
+        success:function(data){console.log(data)},
+        error:function(data){console.log(data)}
       })
 }
 });

@@ -31,3 +31,9 @@ button.multiselect {
  form .error {
   color: #ff0000;
 }
+
+@media screen and (max-width:667px){
+  .spostacolInMobile{
+    margin-top: 5px;
+  }
+}
